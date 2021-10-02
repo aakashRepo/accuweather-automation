@@ -21,6 +21,7 @@ public class DriverManager {
                     driver = new ChromeDriver(options);
             }
         }
+        driver.manage().window().maximize();
         driver.manage().timeouts().implicitlyWait(TestConstants.IMPLICIT_WAIT, TimeUnit.SECONDS);
         return driver;
     }
