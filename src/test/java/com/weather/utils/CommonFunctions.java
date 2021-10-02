@@ -6,7 +6,6 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
-import java.nio.file.WatchEvent;
 
 public class CommonFunctions {
 
@@ -19,20 +18,20 @@ public class CommonFunctions {
         }
     }
 
-    public static void clickElement(WebDriver driver, By element) {
-        driver.findElement(element).click();
+    public static void clickElement(WebDriver driver, WebElement element) {
+        element.click();
     }
 
-    public static boolean isElementDisplayed(WebDriver driver, By element) {
-        return driver.findElement(element).isDisplayed();
+    public static boolean isElementDisplayed(WebDriver driver, WebElement element) {
+        return element.isDisplayed();
     }
 
-    public static String getText(WebDriver driver, By element){
-        return driver.findElement(element).getText();
+    public static String getText(WebDriver driver, WebElement element){
+        return element.getText();
     }
 
-    public static void enterText(WebDriver driver, By element, String text){
-        driver.findElement(element).sendKeys(text);
+    public static void enterText(WebDriver driver, WebElement element, String text){
+        element.sendKeys(text);
     }
 
 }

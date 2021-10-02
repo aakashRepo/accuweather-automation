@@ -5,13 +5,14 @@ import com.weather.utils.InvalidRangeException;
 import com.weather.utils.TestConstants;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 
 public class WeatherInfoPage extends BasePage {
 
     @FindBy(xpath = "//div[@class='cur-con-weather-card__panel']//div[@class='forecast-container']/div[@class='temp-container']/div[@class='temp']")
-    private static By temperature;
+    public static WebElement temperature;
 
     public WeatherInfoPage(WebDriver driver) {
         super(driver);

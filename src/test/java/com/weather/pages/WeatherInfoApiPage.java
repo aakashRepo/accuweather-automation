@@ -5,9 +5,7 @@ import com.weather.utils.Context;
 import io.restassured.http.ContentType;
 import io.restassured.response.Response;
 import org.openqa.selenium.WebDriver;
-
 import static io.restassured.RestAssured.given;
-
 
 public class WeatherInfoApiPage extends BasePage {
 
@@ -33,6 +31,7 @@ public class WeatherInfoApiPage extends BasePage {
                 Context.setWeatherCityApiResponse(response);
                 break;
         }
+        System.out.println(response.asString());
     }
 
     public String getTemperatureFromWeatherCityApi() {
