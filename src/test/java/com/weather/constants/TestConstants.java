@@ -1,5 +1,8 @@
 package com.weather.constants;
 
+/**
+ * This class contains driver, other constants required for UI methods
+ */
 public class TestConstants {
 
     public static int EXPLICIT_WAIT = 30;
