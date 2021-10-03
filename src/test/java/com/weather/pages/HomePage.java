@@ -31,6 +31,11 @@ public class HomePage extends BasePage {
         }
     }
 
+    /**
+     * Method to close cookie popup, close pro tip popup and verify if search box is displayed
+     *
+     * @return Boolean
+     */
     public Boolean verifyUserLandedOnHomePage() {
         acceptCookie();
         closeProTip();

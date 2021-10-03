@@ -9,6 +9,12 @@ import com.weather.utils.PropertiesUtil;
 import org.testng.annotations.Test;
 import org.testng.asserts.SoftAssert;
 
+/**
+ * Test Class for Validating Weather Info
+ *
+ * @author Aakash Singh
+ * 10/03/2021
+ */
 public class WeatherInfoTest extends BaseTest {
 
     @Test
