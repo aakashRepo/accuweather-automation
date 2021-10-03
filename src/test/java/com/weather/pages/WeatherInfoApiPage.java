@@ -5,9 +5,11 @@ import com.weather.utils.Context;
 import com.weather.utils.PropertiesUtil;
 import io.restassured.http.ContentType;
 import io.restassured.response.Response;
+import lombok.extern.log4j.Log4j2;
 import org.openqa.selenium.WebDriver;
 import static io.restassured.RestAssured.given;
 
+@Log4j2
 public class WeatherInfoApiPage extends BasePage {
 
     public WeatherInfoApiPage(WebDriver driver) {
@@ -33,10 +35,11 @@ public class WeatherInfoApiPage extends BasePage {
                 Context.setWeatherCityApiResponse(response);
                 break;
         }
-        System.out.println(response.asString());
+        log.info(response.asString());
     }
 
     public Float getTemperatureFromWeatherCityApi() {
+        log.info("get temperature value from Api response");
         return Context.getWeatherCityApiResponse().getBody().jsonPath().get(APIConstants.WEATHER_CITY_TEMP_PATH);
     }
 }

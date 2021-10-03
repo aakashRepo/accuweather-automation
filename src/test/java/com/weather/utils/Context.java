@@ -13,6 +13,4 @@ public class Context {
     public static void setWeatherCityApiResponse(Response weatherCityApi) {
         weatherCityApiResponse = weatherCityApi;
     }
-
-
 }

@@ -1,17 +1,19 @@
 package com.weather.utils;
 
-import java.io.File;
+import lombok.extern.log4j.Log4j2;
+
 import java.io.FileInputStream;
 import java.io.IOException;
 import java.util.Properties;
 
+@Log4j2
 public class PropertiesUtil {
 
     static Properties prop;
 
     public static void loadProperties() {
         try {
-            System.out.println("Loading Properties File");
+            log.info("Loading Properties File");
             FileInputStream fis = new FileInputStream(System.getProperty("user.dir")+"/data/EnvConfig.properties");
             prop = new Properties();
             prop.load(fis);
@@ -21,7 +23,7 @@ public class PropertiesUtil {
     }
 
     public static String getProperty(String key) {
-        System.out.println("Get Value for: " + key);
+        log.info("Get Value for: " + key);
         return prop.getProperty(key);
     }
 }
