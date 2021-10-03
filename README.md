@@ -1,1 +1,2 @@
-# accuweather-automation
+AccuWeather-AutomationSuite validates the Weather information on UI with the Api.
+If the difference between the temperature on UI and API is more than a specified range, it will throw Custom Exception.
