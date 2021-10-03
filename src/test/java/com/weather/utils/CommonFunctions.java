@@ -1,5 +1,6 @@
 package com.weather.utils;
 
+import com.weather.constants.TestConstants;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
@@ -32,6 +33,10 @@ public class CommonFunctions {
 
     public static void enterText(WebDriver driver, WebElement element, String text){
         element.sendKeys(text);
+    }
+
+    public static void switchToDefaultView(WebDriver driver){
+        driver.switchTo().defaultContent();
     }
 
 }

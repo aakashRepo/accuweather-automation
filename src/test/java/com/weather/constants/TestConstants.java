@@ -1,4 +1,4 @@
-package com.weather.utils;
+package com.weather.constants;
 
 public class TestConstants {
 
@@ -6,6 +6,4 @@ public class TestConstants {
     public static int IMPLICIT_WAIT = 30;
     public static int minTemp = 20;
     public static int maxTemp = 30;
-
-
 }

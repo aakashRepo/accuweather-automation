@@ -1,7 +1,8 @@
 package com.weather.pages;
 
-import com.weather.utils.APIConstants;
+import com.weather.constants.APIConstants;
 import com.weather.utils.Context;
+import com.weather.utils.PropertiesUtil;
 import io.restassured.http.ContentType;
 import io.restassured.response.Response;
 import org.openqa.selenium.WebDriver;
@@ -14,18 +15,19 @@ public class WeatherInfoApiPage extends BasePage {
     }
 
     public void getResponseFromAPI(String apiName) {
+        Response response = null;
         String uri = null;
         switch (apiName) {
             case "weatherCityApi":
                 uri = APIConstants.WEATHER_CITY;
+                response = given()
+                        .contentType(ContentType.JSON)
+                        .when().param("q", PropertiesUtil.getProperty("city")).param("appid", APIConstants.API_KEY)
+                        .get(uri)
+                        .then()
+                        .extract().response();
                 break;
         }
-        Response response = given()
-                .contentType(ContentType.JSON)
-                .when()
-                .get(uri)
-                .then()
-                .extract().response();
         switch (apiName) {
             case "weatherCityApi":
                 Context.setWeatherCityApiResponse(response);
@@ -34,7 +36,7 @@ public class WeatherInfoApiPage extends BasePage {
         System.out.println(response.asString());
     }
 
-    public String getTemperatureFromWeatherCityApi() {
+    public Float getTemperatureFromWeatherCityApi() {
         return Context.getWeatherCityApiResponse().getBody().jsonPath().get(APIConstants.WEATHER_CITY_TEMP_PATH);
     }
 }

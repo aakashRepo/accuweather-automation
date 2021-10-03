@@ -13,7 +13,6 @@ public class WeatherInfoTest extends BaseTest {
 
     @Test
     public void test_validateWeatherInfo_ForCity() throws InvalidRangeException {
-        System.out.println("I am in Test method");
         HomePage homePage = new HomePage(driver);
         SoftAssert softAssert = new SoftAssert();
         WeatherInfoPage weatherInfoPage = new WeatherInfoPage(driver);
@@ -25,7 +24,7 @@ public class WeatherInfoTest extends BaseTest {
         weatherInfoApiPage.getResponseFromAPI("weatherCityApi");
         String tempApi = FahrenheitToCelcius.convertFahrenheitToCelcius(weatherInfoApiPage.getTemperatureFromWeatherCityApi());
         softAssert.assertEquals(tempUI, tempApi, "Temperature from UI and API doesn't match");
-        softAssert.assertTrue(weatherInfoPage.verifyTemperatureDifferenceRangeValue(tempUI, tempApi));
+        weatherInfoPage.verifyTemperatureDifferenceRangeValue(tempUI, tempApi);
         softAssert.assertAll();
     }
 

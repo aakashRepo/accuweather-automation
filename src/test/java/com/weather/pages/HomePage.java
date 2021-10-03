@@ -15,6 +15,8 @@ public class HomePage extends BasePage {
     public static WebElement searchResult;
     @FindBy(xpath = "//div[@id='privacy-policy-banner']//div[text()='I Understand']")
     public static WebElement acceptCookie;
+    @FindBy(xpath = "//*[local-name()='svg' and @class='pro-tip__close close-icon']")
+    public static WebElement proTipCloseIcon;
 
     public HomePage(WebDriver driver) {
         super(driver);
@@ -29,14 +31,20 @@ public class HomePage extends BasePage {
 
     public Boolean verifyUserLandedOnHomePage() {
         acceptCookie();
+        closeProTip();
         return CommonFunctions.isElementDisplayed(driver, searchBox);
     }
 
     public void searchCity(String city) {
         CommonFunctions.clickElement(driver, searchBox);
         CommonFunctions.enterText(driver, searchBox, city);
-        //CommonFunctions.waitTillElementDisplayed(driver, searchResult);
         CommonFunctions.clickElement(driver, searchResult);
+    }
+
+    public void closeProTip() {
+        if (CommonFunctions.isElementDisplayed(driver, proTipCloseIcon)) {
+            CommonFunctions.clickElement(driver, proTipCloseIcon);
+        }
     }
 
 }

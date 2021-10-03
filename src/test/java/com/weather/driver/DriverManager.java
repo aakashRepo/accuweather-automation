@@ -1,6 +1,6 @@
 package com.weather.driver;
 
-import com.weather.utils.TestConstants;
+import com.weather.constants.TestConstants;
 import io.github.bonigarcia.wdm.WebDriverManager;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
@@ -17,6 +17,7 @@ public class DriverManager {
             switch (browser) {
                 case "chrome":
                     ChromeOptions options = new ChromeOptions();
+                    options.addArguments("--disable-notifications");
                     WebDriverManager.chromedriver().setup();
                     driver = new ChromeDriver(options);
             }

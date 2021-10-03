@@ -2,8 +2,7 @@ package com.weather.pages;
 
 import com.weather.utils.CommonFunctions;
 import com.weather.utils.InvalidRangeException;
-import com.weather.utils.TestConstants;
-import org.openqa.selenium.By;
+import com.weather.constants.TestConstants;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
@@ -24,27 +23,21 @@ public class WeatherInfoPage extends BasePage {
     }
 
     public String getTemperatureFromUI() {
-        return CommonFunctions.getText(driver, temperature);
+        String tempUi = CommonFunctions.getText(driver, temperature);
+        return tempUi.replaceAll("[^0-9]", "");
     }
 
-    public Boolean verifyTemperatureDifferenceRangeValue(String ui, String api) {
-        try {
-            int tempUi = Integer.parseInt(ui);
-            int tempApi = Integer.parseInt(api);
-            if (tempApi - tempUi != 0) {
-                if (tempApi - tempUi > 0) {
-                    if (!(tempApi - tempUi > TestConstants.minTemp) && (tempApi - tempUi < TestConstants.maxTemp)) {
-                        throw new InvalidRangeException("Temperature difference from UI and API doesn't fall in expected Range");
-                    }
-                } else if (tempUi - tempApi > 0) {
-                    if (!(tempUi - tempApi > TestConstants.minTemp) && (tempUi - tempApi < TestConstants.maxTemp)) {
-                        throw new InvalidRangeException("Temperature difference from UI and API doesn't fall in expected Range");
-                    }
-                }
+    public void verifyTemperatureDifferenceRangeValue(String ui, String api) throws InvalidRangeException {
+        Float tempUi = Float.parseFloat(ui);
+        Float tempApi = Float.parseFloat(api);
+        float diff = tempApi - tempUi;
+        if (diff != 0) {
+            diff = (diff < 0 ? -diff : diff);
+            if (!((diff > TestConstants.minTemp) && (diff < TestConstants.maxTemp))) {
+                System.out.println("TempApi: " + tempApi + " TempUI:" + tempUi);
+                throw new InvalidRangeException("Temperature difference from UI and API doesn't fall in expected Range. TempApi: " + tempApi + " TempUI:" + tempUi);
             }
-            return true;
-        } catch (Exception e) {
-            return false;
         }
+        System.out.println("Temperature from UI and API is same");
     }
 }

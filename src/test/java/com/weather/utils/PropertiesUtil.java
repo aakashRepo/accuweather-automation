@@ -24,5 +24,4 @@ public class PropertiesUtil {
         System.out.println("Get Value for: " + key);
         return prop.getProperty(key);
     }
-
 }
